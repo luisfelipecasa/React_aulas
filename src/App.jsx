@@ -1,58 +1,44 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/home'
 import Sobre from './pages/Sobre'
-import AppTarefas from './pages/tarefas/AppTarefas'
 import './App.css'
+import AppTarefas from './pages/Tarefas/AppTarefas'
 import { ThemeProvider } from './contexts/ThemeContext'
+import ThemeToggleButton from './components/ThemeToggleButton'
+import './tema.css'
+import { useContext } from 'react'
+import Usuarios from './pages/Usuarios'
 
 function App() {
+
+  const { theme } = useContext
+
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <div className="min-h-screen flex flex-col bg-gray-100 text-gray-900">
-          {/* Navbar */}
-          <nav className="bg-gray-200 border-b-1 border-gray-300">
-            <ul className="flex space-x-6 px-6 py-4 font-medium">
-              <li>
-                <Link
-                  to="/"
-                  className="transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/sobre"
-                  className="transition-colors"
-                >
-                  Sobre
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/apptarefas"
-                  className="transition-colors"
-                >
-                  App Tarefas
-                </Link>
-              </li>
-            </ul>
-          </nav>
+        <nav>
+          <ul>
+            <li> <Link to="/">Home</Link> </li>
+            <li> <Link to="/sobre">Sobre</Link> </li>
+            <li> <Link to="/tarefas" > Tarefas </Link> </li>
+            <li> <Link to="/usuarios" > Usuarios </Link> </li>
+          </ul>
 
-          {/* Conteúdo */}
-          <main className="flex-1 p-6">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/sobre" element={<Sobre />} />
-              <Route path="/apptarefas" element={<AppTarefas />} />
-            </Routes>
-          </main>
-
+          <ThemeToggleButton></ThemeToggleButton>
+        </nav>
+        
+        {/* Define as rotas */}
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/tarefas" element={ <AppTarefas/> } />
+            <Route path="/usuarios" element={ <Usuarios/> } />
+          </Routes>
         </div>
       </BrowserRouter>
-    </ThemeProvider>
+    </ ThemeProvider>
   )
 }
 
-export default App
+export default App;

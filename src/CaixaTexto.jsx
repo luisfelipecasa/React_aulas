@@ -1,22 +1,22 @@
 import { useState } from "react";
 
 const CaixaTexto = () => {
-
-    const [texto, setexto] = useState('')
+    const [texto, setTexto] = useState('');
 
     const gerenciaTexto = (event) => {
-        setexto(event.target.value)
+        setTexto(event.target.value);
     }
 
     return (
         <div>
             <h3>Input</h3>
 
-            <input type="text" value={texto} onChange={gerenciaTexto}/>
-            <p>Você digitou: {texto}</p>
+            <input type="text" value={texto} onChange={gerenciaTexto} />
+
+            <p>Você digitou: {texto} </p>
         </div>
     )
 
 }
 
-export default CaixaTexto
+export default CaixaTexto;
